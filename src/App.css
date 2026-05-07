@@ -1,0 +1,257 @@
+html,
+body,
+:root,
+#root {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+.panda-container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.panda-container:active {
+  cursor: grabbing;
+}
+
+.panda-sprite {
+  animation: idle-bounce 2s ease-in-out infinite;
+  will-change: transform;
+  position: relative;
+}
+
+.pixel {
+  width: 8px;
+  height: 8px;
+  /* 16x16 pixel panda drawn with box-shadow */
+  /* Scale: each unit = 8px */
+  /* Colors: #000 black, #fff white, #ffb8c6 blush pink, #4a7 bamboo green */
+  box-shadow:
+    /* === Ears === */
+    /* Left ear */
+    calc(3 * 8px) calc(0 * 8px) 0 0 #000,
+    calc(4 * 8px) calc(0 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(1 * 8px) 0 0 #222,
+    calc(4 * 8px) calc(1 * 8px) 0 0 #000,
+    /* Right ear */
+    calc(11 * 8px) calc(0 * 8px) 0 0 #000,
+    calc(12 * 8px) calc(0 * 8px) 0 0 #000,
+    calc(11 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(12 * 8px) calc(1 * 8px) 0 0 #222,
+    calc(13 * 8px) calc(1 * 8px) 0 0 #000,
+
+    /* === Head outline top === */
+    calc(5 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(6 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(7 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(8 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(9 * 8px) calc(1 * 8px) 0 0 #000,
+    calc(10 * 8px) calc(1 * 8px) 0 0 #000,
+
+    /* === Row 2 === */
+    calc(2 * 8px) calc(2 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(2 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(2 * 8px) 0 0 #000,
+
+    /* === Row 3 === */
+    calc(1 * 8px) calc(3 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(3 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(3 * 8px) 0 0 #fff,
+    calc(14 * 8px) calc(3 * 8px) 0 0 #000,
+
+    /* === Row 4 — eyes === */
+    calc(1 * 8px) calc(4 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(3 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(4 * 8px) 0 0 #000,
+    calc(5 * 8px) calc(4 * 8px) 0 0 #000,
+    calc(6 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(4 * 8px) 0 0 #000,
+    calc(11 * 8px) calc(4 * 8px) 0 0 #000,
+    calc(12 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(4 * 8px) 0 0 #fff,
+    calc(14 * 8px) calc(4 * 8px) 0 0 #000,
+
+    /* === Row 5 — cheeks and nose === */
+    calc(1 * 8px) calc(5 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(5 * 8px) 0 0 #fff,
+    calc(3 * 8px) calc(5 * 8px) 0 0 #ffb8c6,
+    calc(4 * 8px) calc(5 * 8px) 0 0 #ffb8c6,
+    calc(5 * 8px) calc(5 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(5 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(5 * 8px) 0 0 #000,
+    calc(8 * 8px) calc(5 * 8px) 0 0 #000,
+    calc(9 * 8px) calc(5 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(5 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(5 * 8px) 0 0 #ffb8c6,
+    calc(12 * 8px) calc(5 * 8px) 0 0 #ffb8c6,
+    calc(13 * 8px) calc(5 * 8px) 0 0 #fff,
+    calc(14 * 8px) calc(5 * 8px) 0 0 #000,
+
+    /* === Row 6 — mouth === */
+    calc(1 * 8px) calc(6 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(3 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(6 * 8px) 0 0 #fff,
+    calc(14 * 8px) calc(6 * 8px) 0 0 #000,
+
+    /* === Row 7 — lower face / smile === */
+    calc(2 * 8px) calc(7 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(7 * 8px) 0 0 #000,
+    calc(7 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(7 * 8px) 0 0 #000,
+    calc(10 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(7 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(7 * 8px) 0 0 #000,
+
+    /* === Row 8 — chin / body top === */
+    calc(3 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(4 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(5 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(6 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(7 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(8 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(9 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(10 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(11 * 8px) calc(8 * 8px) 0 0 #000,
+    calc(12 * 8px) calc(8 * 8px) 0 0 #000,
+
+    /* === Row 9 — body with arms === */
+    calc(2 * 8px) calc(9 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(9 * 8px) 0 0 #000,
+    calc(4 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(9 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(9 * 8px) 0 0 #000,
+    calc(13 * 8px) calc(9 * 8px) 0 0 #000,
+
+    /* === Row 10 — body === */
+    calc(1 * 8px) calc(10 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(10 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(10 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(10 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(10 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(10 * 8px) 0 0 #eee,
+    calc(7 * 8px) calc(10 * 8px) 0 0 #eee,
+    calc(8 * 8px) calc(10 * 8px) 0 0 #eee,
+    calc(9 * 8px) calc(10 * 8px) 0 0 #eee,
+    calc(10 * 8px) calc(10 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(10 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(10 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(10 * 8px) 0 0 #000,
+    calc(14 * 8px) calc(10 * 8px) 0 0 #000,
+
+    /* === Row 11 — belly === */
+    calc(1 * 8px) calc(11 * 8px) 0 0 #000,
+    calc(2 * 8px) calc(11 * 8px) 0 0 #fff,
+    calc(3 * 8px) calc(11 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(11 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(11 * 8px) 0 0 #eee,
+    calc(6 * 8px) calc(11 * 8px) 0 0 #eee,
+    calc(7 * 8px) calc(11 * 8px) 0 0 #ddd,
+    calc(8 * 8px) calc(11 * 8px) 0 0 #ddd,
+    calc(9 * 8px) calc(11 * 8px) 0 0 #eee,
+    calc(10 * 8px) calc(11 * 8px) 0 0 #eee,
+    calc(11 * 8px) calc(11 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(11 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(11 * 8px) 0 0 #fff,
+    calc(14 * 8px) calc(11 * 8px) 0 0 #000,
+
+    /* === Row 12 — lower body === */
+    calc(2 * 8px) calc(12 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(12 * 8px) 0 0 #fff,
+    calc(4 * 8px) calc(12 * 8px) 0 0 #fff,
+    calc(5 * 8px) calc(12 * 8px) 0 0 #fff,
+    calc(6 * 8px) calc(12 * 8px) 0 0 #eee,
+    calc(7 * 8px) calc(12 * 8px) 0 0 #eee,
+    calc(8 * 8px) calc(12 * 8px) 0 0 #eee,
+    calc(9 * 8px) calc(12 * 8px) 0 0 #eee,
+    calc(10 * 8px) calc(12 * 8px) 0 0 #fff,
+    calc(11 * 8px) calc(12 * 8px) 0 0 #fff,
+    calc(12 * 8px) calc(12 * 8px) 0 0 #fff,
+    calc(13 * 8px) calc(12 * 8px) 0 0 #000,
+
+    /* === Row 13 — legs top === */
+    calc(3 * 8px) calc(13 * 8px) 0 0 #000,
+    calc(4 * 8px) calc(13 * 8px) 0 0 #000,
+    calc(5 * 8px) calc(13 * 8px) 0 0 #000,
+    calc(6 * 8px) calc(13 * 8px) 0 0 #fff,
+    calc(7 * 8px) calc(13 * 8px) 0 0 #fff,
+    calc(8 * 8px) calc(13 * 8px) 0 0 #fff,
+    calc(9 * 8px) calc(13 * 8px) 0 0 #fff,
+    calc(10 * 8px) calc(13 * 8px) 0 0 #000,
+    calc(11 * 8px) calc(13 * 8px) 0 0 #000,
+    calc(12 * 8px) calc(13 * 8px) 0 0 #000,
+
+    /* === Row 14 — feet === */
+    calc(2 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(3 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(4 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(5 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(10 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(11 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(12 * 8px) calc(14 * 8px) 0 0 #000,
+    calc(13 * 8px) calc(14 * 8px) 0 0 #000;
+}
+
+@keyframes idle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
