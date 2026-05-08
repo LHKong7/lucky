@@ -1,65 +1,68 @@
-html,
-body,
-:root,
-#root {
+/* === Reset === */
+html, body, :root, #root {
   margin: 0;
   padding: 0;
   background: transparent;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
-.panda-container {
-  width: 200px;
-  height: 200px;
+.app {
   display: flex;
+  flex-direction: column;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ===================== Panda Area ===================== */
+.panda-area {
+  width: 140px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
+  position: relative;
 }
 
-.panda-container:active {
+.panda-area:active {
   cursor: grabbing;
 }
 
 .panda-sprite {
   animation: idle-bounce 2s ease-in-out infinite;
   will-change: transform;
-  position: relative;
+  /* Offset so the panda (8px to 128px box-shadow range) is centered in 140px */
+  margin-left: -58px;
+  margin-top: -10px;
 }
 
 .pixel {
   width: 8px;
   height: 8px;
-  /* 16x16 pixel panda drawn with box-shadow */
-  /* Scale: each unit = 8px */
-  /* Colors: #000 black, #fff white, #ffb8c6 blush pink, #4a7 bamboo green */
   box-shadow:
     /* === Ears === */
-    /* Left ear */
     calc(3 * 8px) calc(0 * 8px) 0 0 #000,
     calc(4 * 8px) calc(0 * 8px) 0 0 #000,
     calc(2 * 8px) calc(1 * 8px) 0 0 #000,
     calc(3 * 8px) calc(1 * 8px) 0 0 #222,
     calc(4 * 8px) calc(1 * 8px) 0 0 #000,
-    /* Right ear */
     calc(11 * 8px) calc(0 * 8px) 0 0 #000,
     calc(12 * 8px) calc(0 * 8px) 0 0 #000,
     calc(11 * 8px) calc(1 * 8px) 0 0 #000,
     calc(12 * 8px) calc(1 * 8px) 0 0 #222,
     calc(13 * 8px) calc(1 * 8px) 0 0 #000,
-
-    /* === Head outline top === */
+    /* Head top */
     calc(5 * 8px) calc(1 * 8px) 0 0 #000,
     calc(6 * 8px) calc(1 * 8px) 0 0 #000,
     calc(7 * 8px) calc(1 * 8px) 0 0 #000,
     calc(8 * 8px) calc(1 * 8px) 0 0 #000,
     calc(9 * 8px) calc(1 * 8px) 0 0 #000,
     calc(10 * 8px) calc(1 * 8px) 0 0 #000,
-
-    /* === Row 2 === */
+    /* Row 2 */
     calc(2 * 8px) calc(2 * 8px) 0 0 #000,
     calc(3 * 8px) calc(2 * 8px) 0 0 #fff,
     calc(4 * 8px) calc(2 * 8px) 0 0 #fff,
@@ -72,8 +75,7 @@ body,
     calc(11 * 8px) calc(2 * 8px) 0 0 #fff,
     calc(12 * 8px) calc(2 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(2 * 8px) 0 0 #000,
-
-    /* === Row 3 === */
+    /* Row 3 */
     calc(1 * 8px) calc(3 * 8px) 0 0 #000,
     calc(2 * 8px) calc(3 * 8px) 0 0 #fff,
     calc(3 * 8px) calc(3 * 8px) 0 0 #fff,
@@ -88,8 +90,7 @@ body,
     calc(12 * 8px) calc(3 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(3 * 8px) 0 0 #fff,
     calc(14 * 8px) calc(3 * 8px) 0 0 #000,
-
-    /* === Row 4 — eyes === */
+    /* Row 4 — eyes */
     calc(1 * 8px) calc(4 * 8px) 0 0 #000,
     calc(2 * 8px) calc(4 * 8px) 0 0 #fff,
     calc(3 * 8px) calc(4 * 8px) 0 0 #fff,
@@ -104,8 +105,7 @@ body,
     calc(12 * 8px) calc(4 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(4 * 8px) 0 0 #fff,
     calc(14 * 8px) calc(4 * 8px) 0 0 #000,
-
-    /* === Row 5 — cheeks and nose === */
+    /* Row 5 — cheeks */
     calc(1 * 8px) calc(5 * 8px) 0 0 #000,
     calc(2 * 8px) calc(5 * 8px) 0 0 #fff,
     calc(3 * 8px) calc(5 * 8px) 0 0 #ffb8c6,
@@ -120,8 +120,7 @@ body,
     calc(12 * 8px) calc(5 * 8px) 0 0 #ffb8c6,
     calc(13 * 8px) calc(5 * 8px) 0 0 #fff,
     calc(14 * 8px) calc(5 * 8px) 0 0 #000,
-
-    /* === Row 6 — mouth === */
+    /* Row 6 — mouth */
     calc(1 * 8px) calc(6 * 8px) 0 0 #000,
     calc(2 * 8px) calc(6 * 8px) 0 0 #fff,
     calc(3 * 8px) calc(6 * 8px) 0 0 #fff,
@@ -136,8 +135,7 @@ body,
     calc(12 * 8px) calc(6 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(6 * 8px) 0 0 #fff,
     calc(14 * 8px) calc(6 * 8px) 0 0 #000,
-
-    /* === Row 7 — lower face / smile === */
+    /* Row 7 — smile */
     calc(2 * 8px) calc(7 * 8px) 0 0 #000,
     calc(3 * 8px) calc(7 * 8px) 0 0 #fff,
     calc(4 * 8px) calc(7 * 8px) 0 0 #fff,
@@ -150,8 +148,7 @@ body,
     calc(11 * 8px) calc(7 * 8px) 0 0 #fff,
     calc(12 * 8px) calc(7 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(7 * 8px) 0 0 #000,
-
-    /* === Row 8 — chin / body top === */
+    /* Row 8 — chin */
     calc(3 * 8px) calc(8 * 8px) 0 0 #000,
     calc(4 * 8px) calc(8 * 8px) 0 0 #000,
     calc(5 * 8px) calc(8 * 8px) 0 0 #000,
@@ -162,8 +159,7 @@ body,
     calc(10 * 8px) calc(8 * 8px) 0 0 #000,
     calc(11 * 8px) calc(8 * 8px) 0 0 #000,
     calc(12 * 8px) calc(8 * 8px) 0 0 #000,
-
-    /* === Row 9 — body with arms === */
+    /* Row 9 — arms */
     calc(2 * 8px) calc(9 * 8px) 0 0 #000,
     calc(3 * 8px) calc(9 * 8px) 0 0 #000,
     calc(4 * 8px) calc(9 * 8px) 0 0 #fff,
@@ -176,8 +172,7 @@ body,
     calc(11 * 8px) calc(9 * 8px) 0 0 #fff,
     calc(12 * 8px) calc(9 * 8px) 0 0 #000,
     calc(13 * 8px) calc(9 * 8px) 0 0 #000,
-
-    /* === Row 10 — body === */
+    /* Row 10 — body */
     calc(1 * 8px) calc(10 * 8px) 0 0 #000,
     calc(2 * 8px) calc(10 * 8px) 0 0 #000,
     calc(3 * 8px) calc(10 * 8px) 0 0 #fff,
@@ -192,8 +187,7 @@ body,
     calc(12 * 8px) calc(10 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(10 * 8px) 0 0 #000,
     calc(14 * 8px) calc(10 * 8px) 0 0 #000,
-
-    /* === Row 11 — belly === */
+    /* Row 11 — belly */
     calc(1 * 8px) calc(11 * 8px) 0 0 #000,
     calc(2 * 8px) calc(11 * 8px) 0 0 #fff,
     calc(3 * 8px) calc(11 * 8px) 0 0 #fff,
@@ -208,8 +202,7 @@ body,
     calc(12 * 8px) calc(11 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(11 * 8px) 0 0 #fff,
     calc(14 * 8px) calc(11 * 8px) 0 0 #000,
-
-    /* === Row 12 — lower body === */
+    /* Row 12 */
     calc(2 * 8px) calc(12 * 8px) 0 0 #000,
     calc(3 * 8px) calc(12 * 8px) 0 0 #fff,
     calc(4 * 8px) calc(12 * 8px) 0 0 #fff,
@@ -222,8 +215,7 @@ body,
     calc(11 * 8px) calc(12 * 8px) 0 0 #fff,
     calc(12 * 8px) calc(12 * 8px) 0 0 #fff,
     calc(13 * 8px) calc(12 * 8px) 0 0 #000,
-
-    /* === Row 13 — legs top === */
+    /* Row 13 — legs */
     calc(3 * 8px) calc(13 * 8px) 0 0 #000,
     calc(4 * 8px) calc(13 * 8px) 0 0 #000,
     calc(5 * 8px) calc(13 * 8px) 0 0 #000,
@@ -234,8 +226,7 @@ body,
     calc(10 * 8px) calc(13 * 8px) 0 0 #000,
     calc(11 * 8px) calc(13 * 8px) 0 0 #000,
     calc(12 * 8px) calc(13 * 8px) 0 0 #000,
-
-    /* === Row 14 — feet === */
+    /* Row 14 — feet */
     calc(2 * 8px) calc(14 * 8px) 0 0 #000,
     calc(3 * 8px) calc(14 * 8px) 0 0 #000,
     calc(4 * 8px) calc(14 * 8px) 0 0 #000,
@@ -247,11 +238,288 @@ body,
 }
 
 @keyframes idle-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ===================== Toolbar ===================== */
+.toolbar {
+  position: absolute;
+  bottom: 6px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.panda-area:hover .toolbar {
+  opacity: 1;
+}
+
+.toolbar-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.toolbar-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.toolbar-btn.active {
+  background: rgba(80, 80, 80, 0.8);
+}
+
+/* ===================== Panels ===================== */
+.panel {
+  width: 300px;
+  background: rgba(30, 30, 30, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px 12px 0 0;
+  color: #e0e0e0;
+  font-size: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ===================== Chat Panel ===================== */
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 260px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-empty {
+  color: #888;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 11px;
+}
+
+.chat-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  max-width: 90%;
+}
+
+.chat-msg.user {
+  align-self: flex-end;
+}
+
+.chat-msg.user .chat-text {
+  background: #4a6cf7;
+  color: #fff;
+  border-radius: 12px 12px 4px 12px;
+}
+
+.chat-msg.pet .chat-text {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px 12px 12px 4px;
+}
+
+.chat-avatar {
+  font-size: 16px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.chat-text {
+  padding: 6px 10px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #e0e0e0;
+  padding: 6px 10px;
+  font-size: 12px;
+  outline: none;
+}
+
+.chat-input::placeholder {
+  color: #777;
+}
+
+.chat-input:focus {
+  border-color: rgba(74, 108, 247, 0.5);
+}
+
+.chat-send {
+  width: 32px;
+  height: 32px;
+  background: #4a6cf7;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.chat-send:hover {
+  background: #5b7af8;
+}
+
+/* ===================== Settings Panel ===================== */
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+}
+
+.settings-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.s-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.s-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.s-opt {
+  font-weight: 400;
+  color: #666;
+  text-transform: none;
+}
+
+.s-input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #e0e0e0;
+  padding: 6px 8px;
+  font-size: 12px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.s-input::placeholder {
+  color: #666;
+}
+
+.s-input:focus {
+  border-color: rgba(74, 108, 247, 0.5);
+}
+
+select.s-input {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.s-row {
+  display: flex;
+  gap: 4px;
+}
+
+.s-row .s-input {
+  flex: 1;
+}
+
+.s-icon-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.s-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.s-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 8px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.s-btn-cancel,
+.s-btn-save {
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.s-btn-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: #aaa;
+}
+
+.s-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.s-btn-save {
+  background: #4a6cf7;
+  color: #fff;
+}
+
+.s-btn-save:hover {
+  background: #5b7af8;
+}
+
+.s-btn-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

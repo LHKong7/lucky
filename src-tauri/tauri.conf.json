@@ -15,8 +15,8 @@
       {
         "label": "main",
         "title": "lucky",
-        "width": 200,
-        "height": 200,
+        "width": 140,
+        "height": 160,
         "decorations": false,
         "transparent": true,
         "alwaysOnTop": true,
