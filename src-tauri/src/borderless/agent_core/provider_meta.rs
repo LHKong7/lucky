@@ -9,6 +9,7 @@ pub enum ProviderName {
     OpenAI,
     Anthropic,
     Google,
+    Ollama,
 }
 
 impl std::fmt::Display for ProviderName {
@@ -17,6 +18,7 @@ impl std::fmt::Display for ProviderName {
             Self::OpenAI => write!(f, "openai"),
             Self::Anthropic => write!(f, "anthropic"),
             Self::Google => write!(f, "google"),
+            Self::Ollama => write!(f, "ollama"),
         }
     }
 }
@@ -50,6 +52,15 @@ static CONTEXT_WINDOWS: &[(&str, usize)] = &[
     ("gemini-1.5-pro", 2_000_000),
     ("gemini-1.5-flash", 1_000_000),
     ("gemini-pro", 32_000),
+    // Ollama / local models
+    ("llama3", 128_000),
+    ("llama2", 4_096),
+    ("mistral", 32_000),
+    ("mixtral", 32_000),
+    ("codellama", 16_384),
+    ("phi3", 128_000),
+    ("qwen", 32_000),
+    ("deepseek", 128_000),
 ];
 
 /// Look up context window size for a model string.

@@ -33,11 +33,11 @@ html, body, :root, #root {
 }
 
 .panda-sprite {
+  position: absolute;
+  left: 6px;
+  top: 10px;
   animation: idle-bounce 2s ease-in-out infinite;
   will-change: transform;
-  /* Offset so the panda (8px to 128px box-shadow range) is centered in 140px */
-  margin-left: -58px;
-  margin-top: -10px;
 }
 
 .pixel {
@@ -279,81 +279,139 @@ html, body, :root, #root {
   background: rgba(80, 80, 80, 0.8);
 }
 
-/* ===================== Panels ===================== */
-.panel {
-  width: 300px;
+/* ===================== Speech Bubble ===================== */
+.panda-area.chat-open {
+  width: 280px;
+  height: 190px;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: 4px;
+  left: 130px;
+  max-width: 145px;
+  z-index: 10;
+  animation: bubble-pop 0.25s ease-out;
+  transition: opacity 1s ease-out;
+}
+
+.speech-bubble.fading {
+  opacity: 0;
+}
+
+.speech-bubble-text {
   background: rgba(30, 30, 30, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px 12px 0 0;
-  color: #e0e0e0;
-  font-size: 12px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* ===================== Chat Panel ===================== */
-.chat-panel {
-  display: flex;
-  flex-direction: column;
-  height: 260px;
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.chat-empty {
-  color: #888;
-  text-align: center;
-  margin-top: 40px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #e8e8e8;
   font-size: 11px;
-}
-
-.chat-msg {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  max-width: 90%;
-}
-
-.chat-msg.user {
-  align-self: flex-end;
-}
-
-.chat-msg.user .chat-text {
-  background: #4a6cf7;
-  color: #fff;
-  border-radius: 12px 12px 4px 12px;
-}
-
-.chat-msg.pet .chat-text {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px 12px 12px 4px;
-}
-
-.chat-avatar {
-  font-size: 16px;
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.chat-text {
-  padding: 6px 10px;
-  line-height: 1.4;
+  line-height: 1.45;
+  padding: 8px 10px;
+  border-radius: 10px;
   word-break: break-word;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
+.speech-bubble-tail {
+  position: absolute;
+  bottom: -6px;
+  left: 12px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid rgba(30, 30, 30, 0.92);
+}
+
+@keyframes bubble-pop {
+  0% { opacity: 0; transform: scale(0.8) translateY(6px); }
+  60% { transform: scale(1.03) translateY(-1px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ===================== Approval Card ===================== */
+.approval-card {
+  position: absolute;
+  top: 4px;
+  left: 130px;
+  width: 160px;
+  z-index: 10;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 180, 0, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  animation: bubble-pop 0.25s ease-out;
+}
+
+.approval-header {
+  font-size: 10px;
+  color: #ffb400;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.approval-command {
+  font-size: 11px;
+  font-family: "SF Mono", "Menlo", monospace;
+  color: #e0e0e0;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 8px;
+  border-radius: 6px;
+  word-break: break-all;
+  margin-bottom: 10px;
+  max-height: 60px;
+  overflow-y: auto;
+}
+
+.approval-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.approval-btn {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 11px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.approval-btn.reject {
+  background: rgba(255, 255, 255, 0.08);
+  color: #aaa;
+}
+
+.approval-btn.reject:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.approval-btn.approve {
+  background: #2d8a4e;
+  color: #fff;
+}
+
+.approval-btn.approve:hover {
+  background: #35a05a;
+}
+
+/* ===================== Chat Input ===================== */
 .chat-input-row {
   display: flex;
   gap: 6px;
-  padding: 8px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 10px;
+  background: rgba(30, 30, 30, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  width: 280px;
+  box-sizing: border-box;
 }
 
 .chat-input {
@@ -365,6 +423,7 @@ html, body, :root, #root {
   padding: 6px 10px;
   font-size: 12px;
   outline: none;
+  font-family: inherit;
 }
 
 .chat-input::placeholder {
@@ -376,8 +435,8 @@ html, body, :root, #root {
 }
 
 .chat-send {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   background: #4a6cf7;
   border: none;
   border-radius: 8px;
@@ -392,6 +451,24 @@ html, body, :root, #root {
 
 .chat-send:hover {
   background: #5b7af8;
+}
+
+.chat-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===================== Panels ===================== */
+.panel {
+  width: 300px;
+  background: rgba(30, 30, 30, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px 12px 0 0;
+  color: #e0e0e0;
+  font-size: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* ===================== Settings Panel ===================== */
