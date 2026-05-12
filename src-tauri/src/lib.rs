@@ -20,25 +20,34 @@ pub fn run() {
             settings::load_session,
         ])
         .setup(|app| {
-            let settings_item = MenuItemBuilder::with_id("settings", "Settings...")
-                .accelerator("CmdOrCtrl+,")
-                .build(app)?;
-            let history_item = MenuItemBuilder::with_id("history", "Chat History")
-                .accelerator("CmdOrCtrl+H")
-                .build(app)?;
+            // Lucky app menu
             let quit_item = MenuItemBuilder::with_id("quit", "Quit Lucky")
                 .accelerator("CmdOrCtrl+Q")
                 .build(app)?;
-
             let app_submenu = SubmenuBuilder::new(app, "Lucky")
-                .item(&settings_item)
-                .item(&history_item)
-                .separator()
                 .item(&quit_item)
+                .build()?;
+
+            // Settings menu (top-level)
+            let settings_item = MenuItemBuilder::with_id("settings", "Open Settings")
+                .accelerator("CmdOrCtrl+,")
+                .build(app)?;
+            let settings_submenu = SubmenuBuilder::new(app, "Settings")
+                .item(&settings_item)
+                .build()?;
+
+            // History menu (top-level)
+            let history_item = MenuItemBuilder::with_id("history", "View All Messages")
+                .accelerator("CmdOrCtrl+H")
+                .build(app)?;
+            let history_submenu = SubmenuBuilder::new(app, "History")
+                .item(&history_item)
                 .build()?;
 
             let menu = MenuBuilder::new(app)
                 .item(&app_submenu)
+                .item(&settings_submenu)
+                .item(&history_submenu)
                 .build()?;
 
             app.set_menu(menu)?;
